@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from 'dotenv';
 import colors from 'colors';
 import userRoutes from './routes/userRoutes.js';
+import taskRoutes from './routes/taskRoutes.js';
 import { errorHandler } from "./middleware/errorMiddleware.js";
 import { connectDB } from "./config/db.js";
 
@@ -21,6 +22,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/users', userRoutes);
+app.use('/api/tasks', taskRoutes);
 
 app.use(errorHandler);
 
