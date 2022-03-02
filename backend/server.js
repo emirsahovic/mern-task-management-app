@@ -5,6 +5,7 @@ import userRoutes from './routes/userRoutes.js';
 import taskRoutes from './routes/taskRoutes.js';
 import { errorHandler } from "./middleware/errorMiddleware.js";
 import { connectDB } from "./config/db.js";
+import cors from 'cors';
 
 dotenv.config();
 
@@ -16,6 +17,8 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 
 app.get('/', (req, res) => {
     res.send('Welcome to the Task Management API');
