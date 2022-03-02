@@ -11,10 +11,7 @@ const getTasks = expressAsyncHandler(async (req, res, next) => {
         throw new Error('User not found');
     }
 
-    const tasks = await Task.find({ user: req.user.id }).populate({
-        path: 'user',
-        select: 'name'
-    });
+    const tasks = await Task.find({ user: req.user.id });
 
     res.status(200).json(tasks);
 })
@@ -35,7 +32,7 @@ const getTask = expressAsyncHandler(async (req, res, next) => {
         throw new Error('Task not found');
     }
 
-    if (task.user.toString !== req.user.id) {
+    if (task.user.toString() !== req.user.id) {
         res.status(401);
         throw new Error('Not authorized');
     }
@@ -71,4 +68,56 @@ const createTask = expressAsyncHandler(async (req, res, next) => {
     res.status(201).json(task);
 })
 
-export { getTasks, getTask, createTask }
+// @desc  Update task
+// @route  PUT /api/tasks/:id
+// @access  Private
+const updateTask = expressAsyncHandler(async (req, res, next) => {
+    if (!req.user) {
+        res.status(401);
+        throw new Error('User not found');
+    }
+
+    const task = await Task.findById(req.params.id);
+
+    if (!task) {
+        res.status(404);
+        throw new Error('Task not found');
+    }
+
+    if (task.user.toString() !== req.user.id) {
+        res.status(401);
+        throw new Error('Not authorized');
+    }
+
+    const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true });
+
+    res.status(200).json(updatedTask);
+})
+
+// @desc  DELETE task
+// @route  DELETE /api/tasks/:id
+// @access  Private
+const deleteTask = expressAsyncHandler(async (req, res, next) => {
+    if (!req.user) {
+        res.status(401);
+        throw new Error('User not found');
+    }
+
+    const task = await Task.findById(req.params.id);
+
+    if (!task) {
+        res.status(404);
+        throw new Error('Task not found');
+    }
+
+    if (task.user.toString() !== req.user.id) {
+        res.status(401);
+        throw new Error('Not authorized');
+    }
+
+    await task.remove();
+
+    res.status(200).json({ message: 'Task deleted' });
+})
+
+export { getTasks, getTask, createTask, updateTask, deleteTask }
