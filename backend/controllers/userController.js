@@ -3,7 +3,7 @@ import User from "../models/userModel.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-const registerUser = expressAsyncHandler(async (req, res) => {
+const registerUser = expressAsyncHandler(async (req, res, next) => {
     const { name, email, password } = req.body;
 
     if (!name || !email || !password) {
@@ -45,7 +45,7 @@ const registerUser = expressAsyncHandler(async (req, res) => {
     }
 })
 
-const loginUser = expressAsyncHandler(async (req, res) => {
+const loginUser = expressAsyncHandler(async (req, res, next) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
