@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { FaUser, FaSignInAlt, FaSignOutAlt } from 'react-icons/fa';
+import { FaUser, FaSignInAlt, FaSignOutAlt, FaTasks } from 'react-icons/fa';
+import { IoIosCreate } from 'react-icons/io';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout, reset } from '../features/auth/authSlice';
 
@@ -20,9 +21,17 @@ const Header = () => {
                 </Link>
                 <div className='flex space-x-8'>
                     {user ? (
-                        <button onClick={onLogout} className='text-white font-semibold text-lg flex items-center mx-16'>
-                            <FaSignOutAlt className='mr-2' /> Logout
-                        </button>
+                        <div className='mx-16 flex'>
+                            <Link to='/my-tasks' className='text-white font-semibold text-lg flex items-center mr-6 hover:opacity-80'>
+                                <FaTasks className='mr-2' /> My Tasks
+                            </Link>
+                            <Link to='/tasks' className='text-white font-semibold text-lg flex items-center mr-6 hover:opacity-80'>
+                                <IoIosCreate className='mr-2' /> Create Task
+                            </Link>
+                            <button onClick={onLogout} className='text-white font-semibold text-lg flex items-center hover:opacity-80'>
+                                <FaSignOutAlt className='mr-2' /> Logout
+                            </button>
+                        </div>
                     )
                         : (
                             <div className='flex space-x-8 mx-16'>
