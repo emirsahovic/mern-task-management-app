@@ -21,7 +21,7 @@ const Header = () => {
                 <div className='flex space-x-8'>
                     {user ? (
                         <button onClick={onLogout} className='text-white font-semibold text-lg flex items-center mx-16'>
-                            <FaSignInAlt className='mr-2' /> Logout
+                            <FaSignOutAlt className='mr-2' /> Logout
                         </button>
                     )
                         : (
