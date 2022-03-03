@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const TaskForm = () => {
     const [formData, setFormData] = useState({
@@ -8,6 +10,14 @@ const TaskForm = () => {
     })
 
     const { title, description, priority } = formData;
+    const { user } = useSelector(state => state.auth);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!user) {
+            navigate('/login');
+        }
+    }, [user, navigate])
 
     const onChange = (e) => {
         setFormData(prevState => ({
