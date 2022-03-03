@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { createTask, reset } from "../features/tasks/taskSlice";
+import { toast } from 'react-toastify';
 
 const TaskForm = () => {
     const [formData, setFormData] = useState({
@@ -11,13 +13,26 @@ const TaskForm = () => {
 
     const { title, description, priority } = formData;
     const { user } = useSelector(state => state.auth);
+    const { isLoading, isSuccess, isError, message } = useSelector(state => state.task);
+
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (!user) {
             navigate('/login');
         }
-    }, [user, navigate])
+
+        if (isError) {
+            toast.error(message);
+        }
+
+        if (isSuccess) {
+            navigate('/my-tasks');
+        }
+
+        dispatch(reset());
+    }, [user, navigate, isError, message, isSuccess])
 
     const onChange = (e) => {
         setFormData(prevState => ({
@@ -26,11 +41,27 @@ const TaskForm = () => {
         }))
     }
 
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        if (priority < 1 || priority > 5) {
+            toast.error('Priority must be between 1 and 5');
+        } else {
+            const taskData = {
+                title,
+                description,
+                priority: parseInt(priority)
+            }
+
+            dispatch(createTask(taskData));
+        }
+    }
+
     return (
         <div className='flex justify-center min-h-screen bg-gray-200'>
             <div className='w-full max-w-lg px-10 py-8 mx-auto bg-white rounded-lg shadow-xl h-3/4 mt-20'>
                 <div className='max-w-md mx-auto space-y-6'>
-                    <form>
+                    <form onSubmit={onSubmit}>
                         <h2 className="text-2xl font-bold ">Add new task</h2>
                         <p className="my-4 opacity-70">Add a new task to help you keep track of your responsibilities and improve your organization.</p>
                         <hr className="my-4" />
