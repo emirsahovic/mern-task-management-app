@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Register from './pages/Register';
 import Login from './pages/Login';
 import TaskForm from './pages/TaskForm';
+import MyTasks from './pages/MyTasks';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path='/' element={<Register />} />
           <Route path='/login' element={<Login />} />
           <Route path='/tasks' element={<TaskForm />} />
+          <Route path='/my-tasks' element={<MyTasks />} />
         </Routes>
       </Router>
       <ToastContainer />
