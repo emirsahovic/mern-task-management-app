@@ -13,7 +13,7 @@ const TaskForm = () => {
 
     const { title, description, priority } = formData;
     const { user } = useSelector(state => state.auth);
-    const { isLoading, isSuccess, isError, message } = useSelector(state => state.task);
+    const { isSuccess, isError, message } = useSelector(state => state.task);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -25,10 +25,6 @@ const TaskForm = () => {
 
         if (isError) {
             toast.error(message);
-        }
-
-        if (isSuccess) {
-            navigate('/my-tasks');
         }
 
         dispatch(reset());
@@ -46,6 +42,8 @@ const TaskForm = () => {
 
         if (priority < 1 || priority > 5) {
             toast.error('Priority must be between 1 and 5');
+        } else if (title.length > 300) {
+            toast.error('Maximum number of characters for the title is 300 ');
         } else {
             const taskData = {
                 title,
@@ -54,6 +52,13 @@ const TaskForm = () => {
             }
 
             dispatch(createTask(taskData));
+            toast.success('New task created');
+
+            setFormData({
+                title: '',
+                description: '',
+                priority: 1
+            })
         }
     }
 
@@ -70,18 +75,21 @@ const TaskForm = () => {
                             value={title}
                             onChange={onChange}
                             name="title"
+                            required
                         />
                         <label className="uppercase text-sm font-bold opacity-70">Description</label>
                         <input type="text" className="p-1 mt-2 mb-4 w-full bg-slate-200 rounded"
                             value={description}
                             onChange={onChange}
                             name="description"
+                            required
                         />
                         <label className="uppercase text-sm font-bold opacity-70">Priority (1-5)</label>
                         <input type="number" className="p-1 mt-2 mb-4 w-full bg-slate-200 rounded"
                             value={priority}
                             onChange={onChange}
                             name="priority"
+                            required
                         />
                         <button type="submit" className="mt-3 mx-auto block px-4 py-2 rounded-md bg-teal-500 text-white font-bold">Save</button>
                     </form>
