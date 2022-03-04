@@ -17,12 +17,13 @@ const Header = () => {
         <nav className="bg-teal-500 p-6">
             <div className="container mx-auto flex items-center justify-between flex-wrap ">
                 <Link to='/tasks'>
-                    <h2 className="text-white font-bold text-xl mx-16">Task Management</h2>
+                    <h2 className="text-white font-bold text-xl mx-4">Task Management</h2>
                 </Link>
                 <div className='flex space-x-8'>
                     {user ? (
-                        <div className='mx-16 flex'>
-                            <Link to='/my-tasks' className='text-white font-semibold text-lg flex items-center mr-6 hover:opacity-80'>
+                        <div className='mx-4 flex'>
+                            <button className='text-white text-lg font-bold mr-3'>Welcome, {user.name} |</button>
+                            <Link to='/my-tasks' className='text-white font-semibold text-lg flex items-center mx-6 hover:opacity-80'>
                                 <FaTasks className='mr-2' /> My Tasks
                             </Link>
                             <Link to='/tasks' className='text-white font-semibold text-lg flex items-center mr-6 hover:opacity-80'>
@@ -34,7 +35,7 @@ const Header = () => {
                         </div>
                     )
                         : (
-                            <div className='flex space-x-8 mx-16'>
+                            <div className='flex space-x-8 mx-4'>
                                 <Link to='/login' className='text-white font-semibold text-lg flex items-center'>
                                     <FaSignInAlt className='mr-2' /> Login
                                 </Link>
