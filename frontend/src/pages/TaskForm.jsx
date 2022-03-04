@@ -78,7 +78,7 @@ const TaskForm = () => {
                             required
                         />
                         <label className="uppercase text-sm font-bold opacity-70">Description</label>
-                        <input type="text" className="p-1 mt-2 mb-4 w-full bg-slate-200 rounded"
+                        <textarea rows={4} type="text" className="p-1 mt-2 mb-4 w-full bg-slate-200 rounded"
                             value={description}
                             onChange={onChange}
                             name="description"
