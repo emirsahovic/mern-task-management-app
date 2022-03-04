@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { getTasks, reset } from "../features/tasks/taskSlice";
 import Spinner from '../components/Spinner';
 import SingleTask from "../components/SingleTask";
+import { BiSad } from 'react-icons/bi';
 
 const MyTasks = () => {
     const { tasks, isLoading, isSuccess } = useSelector(state => state.task);
@@ -40,6 +41,18 @@ const MyTasks = () => {
                 {tasks.map(task => (
                     <SingleTask task={task} key={task._id} />
                 ))}
+                {tasks.length === 0 &&
+                    (
+                        <>
+                            <div className="flex items-center justify-center">
+                                <p className="text-3xl text-center font-bold rounded-lg mr-2">There is no tasks...</p>
+                                <BiSad className="text-6xl text-teal-500" />
+                            </div>
+                            <div className="text-center">
+                                <Link to='/tasks' className="text-xl bg-teal-500 p-3 text-white font-bold rounded hover:opacity-75">Add your first task</Link>
+                            </div>
+                        </>
+                    )}
             </div>
         </div>
     )
