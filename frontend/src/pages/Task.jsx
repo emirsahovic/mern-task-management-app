@@ -1,26 +1,40 @@
 import { useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getTask } from "../features/tasks/taskSlice";
+import { getTask, reset } from "../features/tasks/taskSlice";
 import { toast } from "react-toastify";
 import { MdDateRange, MdOutlineSubtitles } from 'react-icons/md';
 import { FaVoteYea } from 'react-icons/fa';
 import Spinner from "../components/Spinner";
 
 const Task = () => {
-    const { task, isLoading, isError, message } = useSelector(state => state.task);
+    const { task, isLoading, isSuccess, isError, message } = useSelector(state => state.task);
+    const { user } = useSelector(state => state.auth);
 
     const params = useParams();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        return () => {
+            if (isSuccess) {
+                dispatch(reset());
+            }
+        }
+    }, [dispatch, isSuccess])
 
     useEffect(() => {
         if (isError) {
             toast.error(message);
         }
 
+        if (!user) {
+            navigate('/login');
+        }
+
         dispatch(getTask(params.taskId));
         // eslint-disable-next-line
-    }, [isError, message, params.taskId])
+    }, [isError, message, user, navigate, params.taskId])
 
     if (isLoading) {
         return <Spinner />
