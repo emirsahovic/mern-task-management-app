@@ -43,7 +43,6 @@ Task Management is a full-stack application that helps you organize your respons
 ```   
 └───public
 └───src
-└───models
 │   .gitignore 
 │   package-lock.json 
 │   package.json
