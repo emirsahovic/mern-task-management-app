@@ -6,6 +6,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import TaskForm from './pages/TaskForm';
 import MyTasks from './pages/MyTasks';
+import Task from './pages/Task';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/tasks' element={<TaskForm />} />
           <Route path='/my-tasks' element={<MyTasks />} />
+          <Route path='/tasks/:taskId' element={<Task />} />
         </Routes>
       </Router>
       <ToastContainer />
