@@ -54,19 +54,28 @@ Task Management is a full-stack application that helps you organize your respons
 # Application Review
 
 ### Login Page
-![Login](https://user-images.githubusercontent.com/84568841/156769319-5efa36e4-3736-4de7-98f9-5e55be844884.png)
+![Login](https://user-images.githubusercontent.com/84568841/156879302-a1f3c85c-005b-4af5-907d-33533eb88a3d.png)
+
 
 ### Registration Page
-![Registration](https://user-images.githubusercontent.com/84568841/156769445-a878e296-9c58-45f3-b3ca-75519aca25f4.png)
+![Registration](https://user-images.githubusercontent.com/84568841/156879304-20742b5a-1d56-4898-9c42-3444709f8f58.png)
+
 
 ### Create Task
-![Create Task](https://user-images.githubusercontent.com/84568841/156769560-c0b82db8-7914-4967-88f2-fd9ee3d86d5e.png)
+![Create Task](https://user-images.githubusercontent.com/84568841/156879305-3620b7f8-ed3c-4a30-b742-95c66fa5604c.png)
+
 
 ### My Tasks
-![My Tasks](https://user-images.githubusercontent.com/84568841/156769582-bfc378f7-9b7a-4798-b43e-e60ccfe25b6a.png)
+![My Tasks](https://user-images.githubusercontent.com/84568841/156879307-76666bb3-c5e6-4a8b-9988-37cabd5b917c.png)
+
+
+### Empty Task List
+![Empty Task List](https://user-images.githubusercontent.com/84568841/156879310-abeabd42-a8f1-47ec-bd1a-05467c49e228.png)
+
 
 ### Single Task
-![Single Task Page](https://user-images.githubusercontent.com/84568841/156769617-a8ca8d3a-81a3-4fda-ac84-ba8f84aa5f44.png)
+
+![Single Task](https://user-images.githubusercontent.com/84568841/156879313-df608b9d-f23a-4126-bedf-73b7a59a0daa.png)
 
 
 
