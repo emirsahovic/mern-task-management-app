@@ -70,7 +70,7 @@ Task Management is a full-stack application that helps you organize your respons
 
 
 ### Empty Task List
-![Empty Task List](https://user-images.githubusercontent.com/84568841/156879310-abeabd42-a8f1-47ec-bd1a-05467c49e228.png)
+![Empty Task List](https://user-images.githubusercontent.com/84568841/156879485-2ee4742d-70cf-4798-b514-bdccd8ccd8f4.png)
 
 
 ### Single Task
