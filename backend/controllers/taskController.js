@@ -94,7 +94,7 @@ const updateTask = expressAsyncHandler(async (req, res, next) => {
     res.status(200).json(updatedTask);
 })
 
-// @desc  DELETE task
+// @desc  Delete task
 // @route  DELETE /api/tasks/:id
 // @access  Private
 const deleteTask = expressAsyncHandler(async (req, res, next) => {
@@ -120,4 +120,28 @@ const deleteTask = expressAsyncHandler(async (req, res, next) => {
     res.status(200).json({ message: 'Task deleted' });
 })
 
-export { getTasks, getTask, createTask, updateTask, deleteTask }
+// @desc  Delete tasks
+// @route  DELETE /api/tasks
+// @access  Private
+const deleteTasks = expressAsyncHandler(async (req, res, next) => {
+    if (!req.user) {
+        res.status(401);
+        throw new Error('User not found');
+    }
+
+    const tasks = await Task.find({ user: req.user.id });
+    console.log(tasks);
+
+    if (!tasks) {
+        res.status(404);
+        throw new Error('There is no tasks for that user');
+    }
+
+    tasks.forEach(task => {
+        task.remove()
+    });
+
+    res.status(200).json({ success: true });
+})
+
+export { getTasks, getTask, createTask, updateTask, deleteTask, deleteTasks }
