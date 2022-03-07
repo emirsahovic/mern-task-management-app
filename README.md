@@ -66,7 +66,7 @@ Task Management is a full-stack application that helps you organize your respons
 
 
 ### My Tasks
-![My Tasks](https://user-images.githubusercontent.com/84568841/156879307-76666bb3-c5e6-4a8b-9988-37cabd5b917c.png)
+![My Tasks](https://user-images.githubusercontent.com/84568841/157099639-7ec0b2d5-0f10-47e5-a161-a14c19972eb7.png)
 
 
 ### Empty Task List
