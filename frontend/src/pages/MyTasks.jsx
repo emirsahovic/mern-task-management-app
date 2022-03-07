@@ -5,6 +5,7 @@ import { getTasks, reset } from "../features/tasks/taskSlice";
 import Spinner from '../components/Spinner';
 import SingleTask from "../components/SingleTask";
 import { BiSad } from 'react-icons/bi';
+import { deleteTasks } from "../features/tasks/taskSlice";
 
 const MyTasks = () => {
     const { tasks, isLoading, isSuccess } = useSelector(state => state.task);
@@ -29,6 +30,13 @@ const MyTasks = () => {
         }
     }, [user, navigate, dispatch])
 
+    const deleteAllTasks = () => {
+        dispatch(deleteTasks());
+        setTimeout(() => {
+            navigate(0);
+        }, 30)
+    }
+
     if (isLoading) {
         return <Spinner />
     }
@@ -52,6 +60,13 @@ const MyTasks = () => {
                                 <Link to='/tasks' className="text-xl bg-teal-500 p-3 text-white font-bold rounded hover:opacity-75">Add your first task</Link>
                             </div>
                         </>
+                    )}
+                {tasks.length > 0 &&
+                    (
+                        <button className="bg-red-600 block mx-auto rounded text-white font-bold p-2 text-lg mt-2 hover:opacity-75 transition duration-150"
+                            onClick={() => deleteAllTasks()}>
+                            Delete All Tasks
+                        </button>
                     )}
             </div>
         </div>
