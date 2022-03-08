@@ -3,6 +3,11 @@ Task Management is a full-stack application that helps you organize your respons
 
 # How To Run
 - Git clone repository
+- Create your own .env file that should contain:
+  - PORT = <YOUR_PORT>
+  - MONGO_URI = <YOUR_MONGO_URI>
+  - JWT_SECRET = <YOUR_JWT_SECRET>
+  
 - Run these commands in terminal/shell:
   -  <b>npm install</b> in backend folder
   -  <b>npm install</b> in frontend folder
